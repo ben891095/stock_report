@@ -1,4 +1,4 @@
-# ChatGPT 雲端台股日報排程
+# ChatGPT 台股日報排程
 
 每個交易日收盤後產生一頁報表網頁、在首頁補上連結，並提交到 GitHub Pages 的來源分支。
 資料擷取、驗證、判讀與報表內容規格全部見 Skill，本文件只規範流程。
@@ -10,7 +10,7 @@
 | 執行環境 | ChatGPT Web 排程，時區 `Asia/Taipei` |
 | Repository | `ben891095/stock_report` |
 | 分支 | `main`（GitHub Pages 來源，網站與設定同一分支） |
-| Prompt | `prompts/daily-tw-stock-report.md` |
+| Prompt | `prompts/tw-stock-daily-report.md` |
 | Skill | `.agents/skills/tw-stock-daily-report/SKILL.md` |
 | 報表模板 | `templates/report.html` |
 | 報表路徑 | `reports/YYYY/MM/YYYY-MM-DD.html` |
@@ -32,14 +32,14 @@
 
 ## 階段三：產生報表頁
 
-1. 以模板為基礎，取代 `{{DATE}}`、`{{WEEKDAY}}`、`{{TREND}}`、`{{TREND_CLASS}}`，並依 Skill 填入五個章節。模板本身不得覆寫。
+1. 以模板為基礎，取代 `{{DATE}}`、`{{WEEKDAY}}`、`{{TREND}}`、`{{TREND_CLASS}}`、`{{UPDATED}}`（產生當下的 `Asia/Taipei` 時間，`YYYY/MM/DD HH:MM:SS`），並依 Skill 填入五個章節。模板本身不得覆寫。
 2. 存成 `reports/YYYY/MM/YYYY-MM-DD.html`，不建立 `latest.html` 或其他副本。
 3. 提交前逐項自我檢查，任一項不過就修正後重檢：
    - 沒有殘留的 `{{`，也沒有新增任何 HTML 註解。
    - 五個章節齊全且順序正確。
    - 列數正確：大盤指標 9、法人五日 5、強勢 3、弱勢 3、成交排行 10。
    - 大盤指標每列說明開頭都有一個 tag；均線數值依與收盤比較上色。
-   - 頁首日期、`資料日期` 與檔名三者一致。
+   - 頁首日期、`資料日期` 與檔名三者一致；更新時間為本次執行的實際時間。
 4. 讀取 `main` 上的當日路徑：
    - 不存在：繼續。
    - 內容相同：輸出 `SKIPPED_DUPLICATE` 並停止。
