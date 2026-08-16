@@ -1,0 +1,365 @@
+/* 固定暗色，不跟隨系統偏好。dark only 讓捲軸與控制項也走暗色。 */
+:root {
+  color-scheme: dark only;
+
+  --bg: #12151a;
+  --panel: #1a1f27;
+  --panel-2: #212836;
+  --border: #2e3644;
+  --text: #e9edf3;
+  /* --muted / --faint 用在小字，對比需維持 4.5:1 以上 */
+  --muted: #b7c0cd;
+  --faint: #98a3b3;
+
+  --accent: #5aa9ff;
+  --ok: #4ade80;
+  --danger: #ff6b6b;
+  --warn: #ffc14d;
+
+  /* 台股慣例：紅漲綠跌。整站漲跌顏色只由這三個變數決定 */
+  --up: #ff6b6b;
+  --down: #4ade80;
+  --flat: #b7c0cd;
+
+  /* 章節色調，彼此不重複 */
+  --tone-base: #7cc4ff;    /* 藍：總結 */
+  --tone-income: #5ee9a4;  /* 綠：大盤指標 */
+  --tone-expense: #ffc14d; /* 琥珀：籌碼 */
+  --tone-general: #ff9ec4; /* 玫瑰：熱門股 */
+  --tone-debt: #c9a6ff;    /* 紫：熱門族群 */
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  /* 頁面本身不橫捲 */
+  overflow-x: hidden;
+}
+
+.page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px 20px 64px;
+}
+
+.page-narrow { max-width: 960px; }
+
+a { color: var(--accent); }
+a:hover { text-decoration: none; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- 頁首 ---------- */
+
+.page-header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+}
+
+.site-title {
+  font-size: 30px;
+  margin: 0 0 8px;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+
+.site-title a {
+  background: linear-gradient(96deg, var(--tone-base) 0%, var(--tone-income) 52%, var(--tone-debt) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+}
+
+/* 漸層不支援時仍看得見 */
+@supports not (background-clip: text) {
+  .site-title a { color: var(--tone-base); -webkit-text-fill-color: var(--tone-base); }
+}
+
+.lede { color: var(--muted); margin: 0; font-size: 16px; }
+.hint { color: var(--faint); font-size: 14px; margin: 4px 0 0; }
+
+/* ---------- 徽章 ---------- */
+
+.badge {
+  display: inline-block;
+  padding: 1px 9px;
+  border-radius: 999px;
+  font-size: 14px;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+.badge.is-up   { background: rgba(255, 107, 107, 0.14); color: var(--up);   border-color: rgba(255, 107, 107, 0.35); }
+.badge.is-down { background: rgba(74, 222, 128, 0.14);  color: var(--down); border-color: rgba(74, 222, 128, 0.35); }
+.badge.is-flat { background: rgba(183, 192, 205, 0.12); color: var(--flat); border-color: rgba(183, 192, 205, 0.30); }
+/* 過熱／超跌等「注意」類判讀，不代表方向 */
+.badge.is-warn { background: rgba(255, 193, 77, 0.12); color: var(--warn); border-color: rgba(255, 193, 77, 0.35); }
+
+/* ---------- 最新一篇 ---------- */
+
+.hero {
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--tone-base);
+  border-radius: 12px;
+  background: var(--panel);
+  padding: 18px;
+  margin-bottom: 22px;
+}
+
+.hero-label {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--tone-base);
+  margin: 0 0 6px;
+}
+
+.hero-title {
+  font-size: clamp(20px, 4.2vw, 28px);
+  margin: 0 0 8px;
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-title a { color: var(--text); text-decoration: none; }
+.hero-title a:hover { color: var(--accent); }
+
+.hero-excerpt { color: var(--muted); margin: 8px 0 14px; font-size: 16px; }
+
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  color: var(--faint);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  margin: 0;
+}
+
+.btn {
+  font: inherit;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--text);
+  padding: 6px 12px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.btn:hover { border-color: var(--accent); }
+
+/* ---------- 封存清單 ---------- */
+
+.section-title {
+  font-size: 19px;
+  margin: 0 0 12px;
+  color: var(--tone-base);
+  padding-left: 10px;
+  border-left: 3px solid var(--tone-base);
+  line-height: 1.35;
+}
+
+.month-group {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel);
+  padding: 14px 16px 6px;
+  margin-bottom: 14px;
+}
+
+.month-heading {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--tone-income);
+  padding-left: 10px;
+  border-left: 3px solid var(--tone-income);
+  margin: 0 0 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.post-list { list-style: none; margin: 0; padding: 0; }
+
+.post-item {
+  display: grid;
+  grid-template-columns: 150px 74px 1fr;
+  gap: 12px;
+  align-items: baseline;
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.post-item:last-child { border-bottom: none; }
+.post-item:hover { background: var(--panel-2); }
+
+.post-date {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text);
+  white-space: nowrap;
+}
+.post-date:hover { color: var(--accent); }
+.post-date .weekday { color: var(--faint); font-weight: 400; font-size: 14px; margin-left: 6px; }
+
+.post-excerpt {
+  color: var(--muted);
+  font-size: 14px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+@media (max-width: 640px) {
+  .post-item {
+    grid-template-columns: 1fr auto;
+    row-gap: 4px;
+  }
+  .post-excerpt { grid-column: 1 / -1; }
+}
+
+.empty-state {
+  color: var(--faint);
+  font-size: 14px;
+  margin: 0;
+  padding: 28px 0;
+  text-align: center;
+}
+
+/* ---------- 報表頁 ---------- */
+
+.crumb { font-size: 14px; margin: 0 0 12px; }
+.crumb a { text-decoration: none; }
+.crumb a:hover { text-decoration: underline; }
+
+.article {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel);
+  padding: 20px 22px 24px;
+  margin-bottom: 18px;
+}
+
+.article-header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+}
+
+.article-title {
+  font-size: clamp(22px, 5vw, 30px);
+  margin: 0 0 8px;
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+}
+
+.article h2 {
+  font-size: 19px;
+  margin: 26px 0 10px;
+  padding-left: 10px;
+  border-left: 3px solid var(--tone-base);
+  color: var(--tone-base);
+  line-height: 1.35;
+}
+
+/* 五個章節各一個色調，捲動時一眼分得出段落 */
+.article h2:nth-of-type(5n+2) { color: var(--tone-income);  border-left-color: var(--tone-income); }
+.article h2:nth-of-type(5n+3) { color: var(--tone-expense); border-left-color: var(--tone-expense); }
+.article h2:nth-of-type(5n+4) { color: var(--tone-general); border-left-color: var(--tone-general); }
+.article h2:nth-of-type(5n+5) { color: var(--tone-debt);    border-left-color: var(--tone-debt); }
+
+.article h3 {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin: 18px 0 8px;
+  color: var(--muted);
+}
+
+.article p { margin: 10px 0; }
+.article > p:first-of-type { margin-top: 0; }
+.article ul { margin: 10px 0; padding-left: 22px; color: var(--muted); }
+.article li { margin: 3px 0; }
+.article li::marker { color: var(--tone-base); }
+
+.summary-text { font-size: 16px; color: var(--text); }
+.note { color: var(--faint); font-size: 14px; margin: 8px 0 0; }
+
+/* 表格自身橫向捲動，頁面不橫捲 */
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin: 12px 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+th, td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: right;
+  white-space: nowrap;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background: var(--panel-2);
+  color: var(--faint);
+  font-weight: 600;
+  text-align: right;
+}
+
+thead th:first-child,
+tbody th { text-align: left; color: var(--text); font-weight: 600; }
+tbody tr:last-child th,
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: var(--panel-2); }
+
+/* 指標判讀 tag：放在說明欄開頭 */
+td .badge {
+  margin-right: 8px;
+  padding: 0 8px;
+  vertical-align: 1px;
+}
+
+td.up, span.up { color: var(--up); }
+td.down, span.down { color: var(--down); }
+/* 同一格內並列兩個數值時的分隔符，維持中性色 */
+td .sep { color: var(--faint); }
+td.wrap { white-space: normal; text-align: left; color: var(--muted); }
+
+tr.is-total th, tr.is-total td { border-top: 1px solid var(--border); font-weight: 700; color: var(--text); }
+
+.page-footer {
+  color: var(--faint);
+  font-size: 14px;
+  text-align: center;
+  margin-top: 24px;
+}
+
+.page-footer p { margin: 4px 0; }

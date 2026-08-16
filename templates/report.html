@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>{{DATE}} 收盤報表｜台股每日收盤報表</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%F0%9F%93%88</text></svg>">
+<link rel="stylesheet" href="../../../css/style.css">
+</head>
+<body>
+<div class="page page-narrow">
+
+  <header class="page-header">
+    <h1 class="site-title"><a href="../../../index.html">台股每日收盤報表</a></h1>
+  </header>
+
+  <p class="crumb"><a href="../../../index.html">← 回全部報表</a></p>
+
+  <article class="article">
+    <header class="article-header">
+      <h2 class="article-title">{{DATE}} 收盤報表</h2>
+      <p class="meta-row">
+        <span class="badge {{TREND_CLASS}}">盤勢偏向 {{TREND}}</span>
+        <span>{{WEEKDAY}}</span>
+        <span>資料日期 {{DATE}}</span>
+      </p>
+    </header>
+
+    <h2>總結</h2>
+    <p class="summary-text">
+      盤勢偏向：{{TREND}}。（100～200 個中文字，依序涵蓋均線、動能、量價、法人、類股）
+    </p>
+
+    <h2>大盤指標</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">項目</th>
+            <th scope="col">指標意義</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">收盤</th>
+            <td class="wrap"><span class="badge is-flat">中性</span>（收盤點數、漲跌點與漲跌幅、開高低收位置代表的多空意涵）</td>
+          </tr>
+          <tr>
+            <th scope="row">均線 MA5／MA10</th>
+            <td class="wrap"><span class="badge is-flat">中性</span>MA5 <span class="down">—</span>、MA10 <span class="down">—</span>，（短期均線方向、與收盤的距離、是否為短線支撐或壓力）</td>
+          </tr>
+          <tr>
+            <th scope="row">均線 MA20／MA60</th>
+            <td class="wrap"><span class="badge is-flat">中性</span>MA20 <span class="down">—</span>、MA60 <span class="down">—</span>，（中期均線方向、兩線是否黃金／死亡交叉、排列是否轉正）</td>
+          </tr>
+          <tr>
+            <th scope="row">均線 MA120／MA240</th>
+            <td class="wrap"><span class="badge is-flat">中性</span>MA120 <span class="down">—</span>、MA240 <span class="down">—</span>，（長期均線方向、長多或長空結構、指數離長期成本區多遠）</td>
+          </tr>
+          <tr>
+            <th scope="row">成交金額</th>
+            <td class="wrap"><span class="badge is-flat">中性</span>（成交金額幾億元、較 MV20 增減幾 %，配合指數漲跌判斷量價關係）</td>
+          </tr>
+          <tr>
+            <th scope="row">漲跌家數</th>
+            <td class="wrap"><span class="badge is-flat">中性</span>（漲／跌／平家數，說明市場廣度與指數是否一致）</td>
+          </tr>
+          <tr>
+            <th scope="row">RSI5／RSI10</th>
+            <td class="wrap"><span class="badge is-flat">中性</span>（兩者數值、是否進入 70 以上強勢區或 30 以下弱勢區、兩線相對位置）</td>
+          </tr>
+          <tr>
+            <th scope="row">K9／D9／J9</th>
+            <td class="wrap"><span class="badge is-flat">中性</span>（三者數值、高檔鈍化或低檔整理、K 與 D 的距離與交叉可能）</td>
+          </tr>
+          <tr>
+            <th scope="row">BIAS10／BIAS20／B10-B20</th>
+            <td class="wrap"><span class="badge is-flat">中性</span>（三者數值；乖離大小代表離均線遠近，短中期乖離差說明動能先後。此列標過熱／中性／超跌，不標方向）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>籌碼</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">法人</th>
+            <th scope="col">買進（億）</th>
+            <th scope="col">賣出（億）</th>
+            <th scope="col">買賣超（億）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">外資</th><td>—</td><td>—</td><td class="up">—</td></tr>
+          <tr><th scope="row">投信</th><td>—</td><td>—</td><td class="up">—</td></tr>
+          <tr><th scope="row">自營商</th><td>—</td><td>—</td><td class="down">—</td></tr>
+          <tr class="is-total"><th scope="row">合計</th><td>—</td><td>—</td><td class="up">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>近五個交易日買賣超（億元）</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">日期</th>
+            <th scope="col">外資</th>
+            <th scope="col">投信</th>
+            <th scope="col">自營商</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">MM/DD</th><td class="up">—</td><td class="up">—</td><td class="down">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>（籌碼趨勢：連續買／賣超天數、五日累計、是否翻空，以及與指數走勢是否一致）</p>
+
+    <h2>熱門族群</h2>
+    <p class="note">依類股指數當日漲跌幅排序，取最強與最弱各三個。族群強弱可看出資金流向哪一類產業。</p>
+
+    <h3>強勢</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">類股</th>
+            <th scope="col">指數</th>
+            <th scope="col">漲跌</th>
+            <th scope="col">漲跌幅</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">—</th><td>—</td><td class="up">—</td><td class="up">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>弱勢</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">類股</th>
+            <th scope="col">指數</th>
+            <th scope="col">漲跌</th>
+            <th scope="col">漲跌幅</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">—</th><td>—</td><td class="down">—</td><td class="down">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>（資金流向哪些族群、權值族群的方向、是否有輪動）</p>
+
+    <h2>成交排行</h2>
+    <p class="note">依當日成交量排序，已排除 ETF、槓桿及反向商品等非普通股，名次為過濾後重新編排。上榜只代表交易熱度，不代表推薦。</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">名次</th>
+            <th scope="col">股名（代號）</th>
+            <th scope="col">股價</th>
+            <th scope="col">漲跌幅</th>
+            <th scope="col">成交量（張）</th>
+            <th scope="col">成交金額（億）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">1</th><td class="wrap">—</td><td>—</td><td class="up">—</td><td>—</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>（成交排行集中在哪些族群、漲跌家數比例、與大盤廣度的對照）</p>
+
+  </article>
+
+  <footer class="page-footer">
+    <p>本報告為市場資料整理與技術分析，不構成投資建議。</p>
+  </footer>
+
+</div>
+</body>
+</html>

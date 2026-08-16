@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>台股每日收盤報表</title>
+<meta name="description" content="每個交易日收盤後產生的台股大盤、籌碼、族群與成交排行整理。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%F0%9F%93%88</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="page">
+
+  <header class="page-header">
+    <h1 class="site-title"><a href="index.html">台股每日收盤報表</a></h1>
+    <p class="lede">每個交易日收盤後產生的大盤指標、三大法人籌碼、熱門族群與成交排行整理。</p>
+    <p class="hint">資料來源為 Yahoo 台灣股市；本站僅整理技術面數據，不構成投資建議。</p>
+  </header>
+
+  <!--
+    新增報表時的三個步驟：
+    1. 複製 templates/report.html 為 reports/YYYY/MM/YYYY-MM-DD.html，填入報表內容。
+    2. 以新報表覆寫下方 LATEST 區塊（日期、盤勢徽章、摘要、連結）。
+    3. 在 LIST 區塊最上方插入一列 li.post-item；該月份的 section.month-group
+       不存在時，先新增一個 month-group（新月份放在最上面）。
+    區塊標記請保留，不要刪除。
+  -->
+
+  <!-- LATEST:START -->
+  <section class="hero" aria-label="最新報表">
+    <p class="hero-label">最新報表</p>
+    <h2 class="hero-title"><a href="reports/2026/08/2026-08-14.html">2026/08/14 收盤報表</a></h2>
+    <p class="hero-excerpt">
+      盤勢偏向：中性。加權指數收 45,811.01 點，跌 210.47 點（-0.46%），六條均線全數上揚且收盤仍在最上方；
+      但 K9 自高檔下彎、量增價跌，漲跌家數 400：854 廣度偏弱。三大法人合計買超 516.63 億元，外資連五日買超，籌碼與指數分歧。
+    </p>
+    <p class="meta-row">
+      <span class="badge is-flat">盤勢偏向 中性</span>
+      <span>週五</span>
+      <a class="btn" href="reports/2026/08/2026-08-14.html">閱讀全文 →</a>
+    </p>
+  </section>
+  <!-- LATEST:END -->
+
+  <section aria-label="所有報表">
+    <h2 class="section-title">所有報表</h2>
+
+    <!-- LIST:START -->
+    <section class="month-group">
+      <h3 class="month-heading">2026 年 8 月</h3>
+      <ul class="post-list">
+        <li class="post-item">
+          <a class="post-date" href="reports/2026/08/2026-08-14.html">2026/08/14<span class="weekday">週五</span></a>
+          <span class="badge is-flat">中性</span>
+          <span class="post-excerpt">指數跌 210.47 點（-0.46%），均線仍全數上揚；量增價跌、動能自高檔回落，法人合計買超 516.63 億元。</span>
+        </li>
+      </ul>
+    </section>
+    <!-- LIST:END -->
+
+  </section>
+
+  <footer class="page-footer">
+    <p>本報告為市場資料整理與技術分析，不構成投資建議。</p>
+  </footer>
+
+</div>
+</body>
+</html>
