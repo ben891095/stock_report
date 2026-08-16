@@ -1,0 +1,4 @@
+interface:
+  display_name: "台股每日收盤報表"
+  short_description: "產生含技術指標、法人籌碼、族群強弱與成交排行的台股收盤報表網頁"
+  default_prompt: "使用 $tw-stock-daily-report 依 templates/report.html 產生最新完整交易日的 Yahoo 台股收盤報表網頁，並更新 index.html。"
